@@ -1,0 +1,23 @@
+{% extends 'front.html' %}
+
+{% block content %}
+
+
+<h1>{{post.title}}</h1>
+
+
+<!-- {{post_images}} -->
+
+{% for url in image_urls %}
+{{url}} <br>
+<img src="{{url}}" alt="">
+{% endfor %}
+
+
+<br><hr><br>
+
+<a href="/new-image/{{post.key.id()}}" title="Upload image">Upload Image</a>
+
+{{post}}
+
+{% endblock %}
