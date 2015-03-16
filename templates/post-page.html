@@ -9,14 +9,17 @@
 <!-- {{post_images}} -->
 
 {% for url in image_urls %}
-{{url}} <br>
-<img src="{{url}}" alt="">
+  {{url}} <br>
+  <img src="{{url}}" alt="">
 {% endfor %}
 
 
 <br><hr><br>
 
+<h3>Upload Image</h3>
+<p>This link is new-image/post.key.id(). The post key is provided by the current post.</p>
 <a href="/new-image/{{post.key.id()}}" title="Upload image">Upload Image</a>
+
 
 {{post}}
 

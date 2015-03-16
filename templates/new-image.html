@@ -1,22 +1,26 @@
 {% extends 'front.html' %}
 
 {% block content %}
+
+<!-- This uploaded image will be associated with a Post entity -->
+
 <h1>Upload Image</h1>
-<p>This image is attached to this post: {{post}}</p>
+<p>This image is attached to this post: {{post.title}}</p>
 
 <br><hr><br>
 
 <form action="{{upload_url}}" method="post" enctype="multipart/form-data">
   Upload File: <input type="file" name="my-image">
   <br>
+  <!-- the post's id is also submitted; though hidden -->
   <input type="hidden" value={{post.key.id()}} name="post_id">
   <input type="submit" name="submit" value="Submit">
 </form>
 
 <br><hr><br>
-<h2>All ImageInfo Entities</h2>
+<h2>This Post's ImageInfo Entities</h2>
 
-{% for i in all_image_info %}
+{% for i in post_image_infos %}
 <div>{{i}}</div>
 <br>
 {% endfor %}

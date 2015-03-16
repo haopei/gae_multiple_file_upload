@@ -146,11 +146,11 @@ class NewImage(blobstore_handlers.BlobstoreUploadHandler):
     upload_url = blobstore.create_upload_url('/image-upload/%s' % post_id)
 
     # this query to show all images uploaded (for debugging)
-    all_image_info = ImageInfo.query().fetch()
+    post_image_infos = ImageInfo.query(ImageInfo.post_key == post.key).fetch()
     self.render('new-image.html',
       post = post,
       upload_url = upload_url,
-      all_image_info = all_image_info)
+      post_image_infos = post_image_infos)
 
 # handles upload of images which are in reference of a post
 class ImageUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
@@ -172,6 +172,8 @@ class ImageUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
         blob_key = blob_key,
         post_key = post.key)
       image.put()
+
+    self.redirect('/post/%s' % post.key.id())
 
 app = webapp2.WSGIApplication([
     ('/', Front),
